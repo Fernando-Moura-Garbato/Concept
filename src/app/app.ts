@@ -1,5 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Book } from '../components/home/home';
+
+declare global {
+  interface Window {
+    list: { books: () => Promise<Array<Book>> }
+  }
+}
 
 @Component({
   imports: [RouterOutlet],

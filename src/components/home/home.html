@@ -1,0 +1,15 @@
+<div id="background">
+    <p id="title">
+        Choose a book:
+    </p>
+
+    <div id="books">
+        @for (book of books(); track book.id){
+            <div id="book">
+                <p>
+                    {{ book.title }}
+                </p>
+            </div>
+        }
+    </div>
+</div>

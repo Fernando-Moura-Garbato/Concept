@@ -1,0 +1,33 @@
+p {
+    color: white;
+    margin: 0;
+}
+
+#background {
+    background-color: #3e3e42;
+    text-align: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#title {
+    font-size: 30px;
+}
+
+#books {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#book {
+    background-color: #5e5e62;
+    width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 1px;
+}
