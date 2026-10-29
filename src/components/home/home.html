@@ -1,16 +1,28 @@
 <div id="background">
     <p id="title">
-        Escolha um livro:
+        Escolha um livro
     </p>
 
     <div id="books">
-        @for (book of books(); track book.id){
-            <div id="book">
-                <p>
-                    {{ book.title }}
-                </p>
-                <img src="/icons/book.png" alt="Book Icon" />
-            </div>
-        }
+        <button id="newBook" onClick={createBook}>+</button>
+        <table>
+            <thead>
+                <tr id="header">
+                <th class="headerName">Nome</th>
+                <th>Atualizado</th>
+                <th>Criado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (book of books(); track book.id){
+                <tr class="tableRow">
+                <th class="headerName">{{ book.title }}</th>
+                <td>N/A</td>
+                <td>N/A</td>
+                </tr>
+                }
+            </tbody>
+        </table>
     </div>
+
 </div>
