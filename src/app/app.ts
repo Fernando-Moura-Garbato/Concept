@@ -16,4 +16,7 @@ declare global {
 })
 export class App {
   protected readonly title = signal('Concept');
+  protected readonly isBookOpen = signal(false);
+
+
 }

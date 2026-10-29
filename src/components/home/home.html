@@ -4,7 +4,9 @@
     </p>
 
     <div id="books">
-        <button id="newBook" onClick={createBook}>+</button>
+        <div id="newBookContainer">
+            <button id="newBook">+</button>
+        </div>
         <table>
             <thead>
                 <tr id="header">
@@ -15,7 +17,7 @@
             </thead>
             <tbody>
                 @for (book of books(); track book.id){
-                <tr class="tableRow">
+                <tr class="tableRow" (click)=BookSelected(book)>
                 <th class="headerName">{{ book.title }}</th>
                 <td>N/A</td>
                 <td>N/A</td>

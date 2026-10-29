@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { Nav } from '../../layout/nav/nav';
 
 @Component({
-    imports: [],
+    imports: [Nav],
     selector: 'app-book',
     styleUrl: './book.css',
     templateUrl: './book.html',
 })
-export class AppBook {
-}
+export class AppBook {}

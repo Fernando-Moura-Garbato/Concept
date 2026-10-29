@@ -43,6 +43,7 @@ const createWindow = () => {
     preload: path.join(__dirname, 'preload.js'),
     } 
   })
+  //win.removeMenu()
   win.loadURL('http://localhost:4200');
 }
 
