@@ -7,4 +7,51 @@
     <div id="tabs">
         <button class="tab">Tabzinha</button>
     </div>
+    <div id="utilButtons">
+        <button (click)="minimizeWindow()">
+            <svg width="25" height="25" viewBox="0 0 25 25">
+                <line
+                    x1="5"
+                    y1="12.5"
+                    x2="22"
+                    y2="12.5"
+                    stroke="#a0a0a0"
+                    stroke-width="3"
+                />
+            </svg>
+        </button>
+        <button (click)="maximizeWindow()">
+            <svg width="25" height="25" viewBox="0 0 25 25">
+                <rect
+                    x="5"
+                    y="5"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    stroke="#a0a0a0"
+                    stroke-width="3"
+                />
+            </svg>
+        </button>
+        <button (click)="closeWindow()">
+            <svg width="25" height="25" viewBox="0 0 25 25">
+                <line
+                    x1="5"
+                    y1="5"
+                    x2="22"
+                    y2="22"
+                    stroke="#a0a0a0"
+                    stroke-width="3"
+                />
+                <line
+                    x1="22"
+                    y1="5"
+                    x2="5"
+                    y2="22"
+                    stroke="#a0a0a0"
+                    stroke-width="3"
+                />
+            </svg>
+        </button>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const sqlite = require('sqlite3')
-
 const path = require('node:path')
+
 
 // Handles 
 ipcMain.handle('dark-mode:toggle', () => {
@@ -12,6 +12,8 @@ ipcMain.handle('dark-mode:toggle', () => {
   }
   return nativeTheme.shouldUseDarkColors
 })
+
+
 
 ipcMain.handle('list:books', () => {
   return new Promise((resolve, reject) => {
@@ -39,12 +41,35 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    //frame: false,
     webPreferences: {
     preload: path.join(__dirname, 'preload.js'),
     } 
+    
   })
   //win.removeMenu()
+  win.maximize()
   win.loadURL('http://localhost:4200');
+  //win.setMenuBarVisibility(false)
+
+  ipcMain.handle('currentWindow:close', () => {
+    win.close();
+    return new Promise((resolve, reject) =>{
+      resolve(true)
+    })
+  })
+    ipcMain.handle('currentWindow:maximize', () => {
+    win.maximize();
+    return new Promise((resolve, reject) =>{
+      resolve(true)
+    })
+  })
+    ipcMain.handle('currentWindow:minimize', () => {
+    win.minimize();
+    return new Promise((resolve, reject) =>{
+      resolve(true)
+    })
+  })
 }
 
 app.whenReady().then(() => {

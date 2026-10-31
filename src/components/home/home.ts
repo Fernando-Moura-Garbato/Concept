@@ -21,7 +21,6 @@ export class Home implements OnInit {
 
     async ngOnInit(): Promise<void> {
         this.books.set(await window.list.books());
-        console.log(this.books());
     }
 
     BookSelected(book: Book) {

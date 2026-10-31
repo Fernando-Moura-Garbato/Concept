@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
     styleUrl: './nav.css',
     templateUrl: './nav.html',
 })
-export class Nav {}
+export class Nav {
+    closeWindow(){
+        window.currentWindow.close();
+    }
+    maximizeWindow(){
+        window.currentWindow.maximize();
+    }    
+    minimizeWindow(){
+        window.currentWindow.minimize();
+    }
+}
