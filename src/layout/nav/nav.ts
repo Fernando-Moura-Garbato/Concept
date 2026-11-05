@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
+import { ContentService } from '../../services/content-service';
 
 @Component({
     imports: [],
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
     templateUrl: './nav.html',
 })
 export class Nav {
+    content = inject(ContentService);
+
+    
     closeWindow(){
         window.currentWindow.close();
     }

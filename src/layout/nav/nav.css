@@ -6,7 +6,7 @@
 }
 
 #icon{
-    background-color:#141416;
+    background-color:#1e1e20;
     width:12px;
     padding-left: 5px;
     display:flex;
@@ -15,7 +15,7 @@
 }
 
 #tabs{
-    background-color:#141416;
+    background-color:#1e1e20;
     width: 95%;
     padding-left: 5%;
     display: flex;
@@ -44,7 +44,7 @@
 
 #utilButtons {
     width:15%;
-    background-color:#141416;
+    background-color:#1e1e20;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -53,7 +53,7 @@
 #utilButtons button {
     height:100%;
     width: 50px;
-    background-color: #141416;
+    background-color: #1e1e20;
     border-style: none;
 }
 #utilButtons button:hover {

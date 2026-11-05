@@ -5,7 +5,9 @@
         </svg>
     </div>
     <div id="tabs">
-        <button class="tab">Tabzinha</button>
+        @for (tab of content.tabs(); track tab){
+        <button class="tab">{{ tab }}</button>
+        }
     </div>
     <div id="utilButtons">
         <button (click)="minimizeWindow()">

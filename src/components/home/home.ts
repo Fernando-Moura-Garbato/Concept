@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, inject} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ContentService } from '../../services/content-service';
 
 export class Book {
   id : number = 0;
@@ -17,6 +18,7 @@ export class Book {
 })
 export class Home implements OnInit {
     private router = inject(Router);
+    content = inject(ContentService);
     books = signal<Array<Book>>([]);
 
     async ngOnInit(): Promise<void> {
@@ -25,5 +27,6 @@ export class Home implements OnInit {
 
     BookSelected(book: Book) {
         this.router.navigateByUrl('/book/' + book.id);
+        this.content.tabs.set([...this.content.tabs(), book.title]);
     }
 }
