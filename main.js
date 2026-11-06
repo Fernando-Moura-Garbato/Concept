@@ -70,6 +70,21 @@ const createWindow = () => {
       resolve(true)
     })
   })
+  ipcMain.handle('list:root', (bookId) => {
+    return new Promise((resolve, reject) => {
+    const db = new sqlite.Database('books.db', (err) => {
+      if (err) {
+        console.error('Error opening database:', err);
+        reject(err);
+      } else {
+        root = db.get('SELECT root_category_id FROM books WHERE id = ?', [bookId])
+        categories = db.all('SELECT * FROM categories WHERE category_id = ?', [root.root_category_id])
+        concepts = db.all('SELECT * FROM concepts WHERE category_id = ?', [root.root_category_id])
+        resolve({categories, concepts})
+        }
+      })
+    })
+  })
 }
 
 app.whenReady().then(() => {

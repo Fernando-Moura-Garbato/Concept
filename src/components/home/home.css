@@ -12,7 +12,8 @@ p {
     background-color: #1e1e20;
     text-align: center;
     width: 100vw;
-    height: 97%
+    height: 97%;
+    padding: 30px
 }
 
 #title {

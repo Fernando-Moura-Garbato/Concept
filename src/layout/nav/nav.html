@@ -5,8 +5,8 @@
         </svg>
     </div>
     <div id="tabs">
-        @for (tab of content.tabs(); track tab){
-        <button class="tab">{{ tab }}</button>
+        @for (book of content.books(); track book){
+        <button class="tab">{{ book.title }}</button>
         }
     </div>
     <div id="utilButtons">

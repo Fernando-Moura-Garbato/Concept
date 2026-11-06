@@ -12,4 +12,5 @@ contextBridge.exposeInMainWorld('darkMode', {
 
 contextBridge.exposeInMainWorld('list', {
   books: () => ipcRenderer.invoke('list:books'),
+  root: (bookId) => ipcRenderer.invoke('list:root', bookId)
 })

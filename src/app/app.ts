@@ -1,11 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Book } from '../components/home/home';
+import { Book, Item } from '../entities/book';
 import {Nav} from '../layout/nav/nav'
 
 declare global {
   interface Window {
-    list: { books: () => Promise<Array<Book>> },
+    list: {
+      books: () => Promise<Array<Book>> 
+      root: (bookId: number) => Promise<{ categories: Array<Item>; concepts: Array<Item> }>
+    },
     currentWindow: { 
       close: () => Promise<boolean>
       minimize: () => Promise<boolean>
@@ -22,7 +25,6 @@ declare global {
 })
 export class App {
   protected readonly title = signal('Concept');
-  protected readonly isBookOpen = signal(false);
 
 
 }

@@ -1,14 +1,7 @@
 import { Component, OnInit, signal, inject} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ContentService } from '../../services/content-service';
-
-export class Book {
-  id : number = 0;
-  title: string = "";
-  section: string = "";
-}
-
-
+import { Book } from '../../entities/book';
 
 @Component({
     imports: [],
@@ -27,6 +20,7 @@ export class Home implements OnInit {
 
     BookSelected(book: Book) {
         this.router.navigateByUrl('/book/' + book.id);
-        this.content.tabs.set([...this.content.tabs(), book.title]);
+        this.content.books.set([...this.content.books(), book]);
+        this.content.currentBook.set(book.id);
     }
 }
