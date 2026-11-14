@@ -3,6 +3,33 @@ const sqlite = require('sqlite3')
 const path = require('node:path')
 
 
+function dbGet(sql, params) {
+    return new Promise((resolve, reject) => {
+        db.get(sql, params, (err, row) => {
+            if (err) reject(err);
+            else resolve(row);
+        });
+    });
+}
+
+function dbAll(sql, params) {
+    return new Promise((resolve, reject) => {
+        db.all(sql, params, (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
+const db = new sqlite.Database('books.db', (err) => {
+  if (err) {
+    console.error('Error opening database:', err);
+    reject(err);
+  }
+})
+
+
+
 // Handles 
 ipcMain.handle('dark-mode:toggle', () => {
   if (nativeTheme.shouldUseDarkColors) {
@@ -12,8 +39,6 @@ ipcMain.handle('dark-mode:toggle', () => {
   }
   return nativeTheme.shouldUseDarkColors
 })
-
-
 
 ipcMain.handle('list:books', () => {
   return new Promise((resolve, reject) => {
@@ -70,22 +95,28 @@ const createWindow = () => {
       resolve(true)
     })
   })
-  ipcMain.handle('list:root', (bookId) => {
-    return new Promise((resolve, reject) => {
-    const db = new sqlite.Database('books.db', (err) => {
-      if (err) {
-        console.error('Error opening database:', err);
-        reject(err);
-      } else {
-        root = db.get('SELECT root_category_id FROM books WHERE id = ?', [bookId])
-        categories = db.all('SELECT * FROM categories WHERE category_id = ?', [root.root_category_id])
-        concepts = db.all('SELECT * FROM concepts WHERE category_id = ?', [root.root_category_id])
-        resolve({categories, concepts})
-        }
-      })
-    })
-  })
 }
+
+  ipcMain.handle('list:root', async (event, bookId) => {
+    const root = await dbGet(
+    'SELECT root_category_id FROM books WHERE id = ?',
+    [bookId]);
+
+    const [categories, concepts] = await Promise.all([
+        dbAll(
+            'SELECT * FROM categories WHERE category_id = ?',
+            [root.root_category_id]
+        ),
+        dbAll(
+            'SELECT * FROM concepts WHERE category_id = ?',
+            [root.root_category_id]
+        )
+    ]);
+    return { categories, concepts };
+  }
+)
+ 
+
 
 app.whenReady().then(() => {
   createWindow()
